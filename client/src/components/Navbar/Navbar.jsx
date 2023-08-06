@@ -1,16 +1,38 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react'
+import { Link,useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import decode from "jwt-decode";
 
 import "../Navbar/Navbar.css"
 import logo from "../../assets/logo.png";
 import search from "../../assets/search-solid.svg";
 import Avatar from "../../components/Avatar/Avatar";
-
+//import bars from "../../assets/bars-solid.svg";
+import { setCurrentUser } from "../../actions/currentUser";
 
 
 const Navbar = () => {
 
-    var User = null
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    var User = useSelector((state) => state.currentUserReducer);
+
+    const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+    dispatch(setCurrentUser(null))};
+
+  useEffect(() => {
+    const token = User?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        handleLogout();
+      }
+    }
+    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
+  }, [User?.token, dispatch]);
+    
 
   return (
 
@@ -35,9 +57,9 @@ const Navbar = () => {
                 py="7px"
                 borderRadius="50%"
                 color="white">
-                    <Link to="/" style={{ color: "white", textDecoration: "none" }}>M</Link>
+                    <Link to="/" style={{ color: "white", textDecoration: "none" }}>{User.result.name.charAt(0).toUpperCase()}</Link>
                     </Avatar>
-                   <button className='nav-item nav-links'>Log out</button>
+                   <button className='nav-item nav-links' onClick={handleLogout}>Log out</button>
                </>
             )}
 

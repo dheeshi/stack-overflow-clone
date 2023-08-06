@@ -55,7 +55,7 @@
 
 
 .navbar form input {
-    min-width: 90%;
+    min-width: 80%;
     margin: 0;
     padding: 8px 10px 8px 32px;
     font-size: 13px;
@@ -71,7 +71,7 @@
   }  
  
   .nav-links {
-    padding: 7px 13px;
+    padding: 2px 40px;
     border: solid 1px blue;
     border-radius: 3px;
     background-color: #e7f8fe;
