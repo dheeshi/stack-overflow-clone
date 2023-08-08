@@ -9,7 +9,7 @@ import AskQuestion from './pages/AskQuestion/AskQuestion';
 import DisplayQuestion from "./pages/Question/DisplayQuestion";
 import Tags from "./pages/Tags/Tags";
 import Users from "./pages/Users/Users";
-//import UserProfile from "./Pages/UserProfile/UserProfile";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 
 const AllRoutes = () => {
@@ -24,6 +24,7 @@ const AllRoutes = () => {
       <Route path="/Questions/:id" element={<DisplayQuestion />} />
       <Route path="/Tags" element={<Tags />} />
       <Route path="/Users" element={<Users />} />
+      <Route path="/Users/:id" element={<UserProfile />} />
     </Routes>
   )
 }

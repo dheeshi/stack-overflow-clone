@@ -20,10 +20,10 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-/* export const updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
   const { id: _id } = req.params;
   const { name, about, tags } = req.body;
-
+console.log(_id);
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(404).send("question unavailable...");
   }
@@ -38,4 +38,4 @@ export const getAllUsers = async (req, res) => {
   } catch (error) {
     res.status(405).json({ message: error.message });
   }
-}; */
+};
